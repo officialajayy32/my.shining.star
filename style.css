@@ -1,0 +1,3875 @@
+
+/* =================================
+   PUCHKI — MIDNIGHT PLUM THEME
+   PART 1: FOUNDATION & BACKGROUND
+================================= */
+
+:root {
+  --night: #160D20;
+  --plum: #32152F;
+  --rose: #6B3D61;
+  --gold: #D9B477;
+  --cream: #FFF0F5;
+  --soft: #D8C4D5;
+}
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+html {
+  width: 100%;
+  height: 100%;
+  background: var(--night);
+}
+
+body {
+  width: 100%;
+  min-height: 100vh;
+  overflow: hidden;
+  background: var(--night);
+  color: var(--cream);
+  font-family: 'Poppins', sans-serif;
+  -webkit-tap-highlight-color: transparent;
+}
+
+button {
+  font: inherit;
+  color: inherit;
+  border: none;
+  cursor: pointer;
+  -webkit-tap-highlight-color: transparent;
+}
+
+#ambient-background {
+  position: fixed;
+  inset: 0;
+  z-index: 0;
+  overflow: hidden;
+  pointer-events: none;
+  background:
+    radial-gradient(
+      ellipse at 50% 40%,
+      #482440 0%,
+      #251329 45%,
+      #100A17 100%
+    );
+}
+
+.ambient-glow {
+  position: absolute;
+  width: 75vw;
+  height: 75vw;
+  max-width: 600px;
+  max-height: 600px;
+  top: 10%;
+  left: 50%;
+  transform: translateX(-50%);
+  border-radius: 50%;
+  background: #B16B9B;
+  opacity: 0.10;
+  filter: blur(100px);
+}
+
+#stars,
+#particles {
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+}
+
+#experience {
+  position: relative;
+  width: 100%;
+  height: 100vh;
+  height: 100dvh;
+  overflow: hidden;
+  z-index: 1;
+}
+
+
+/* =================================
+   PART 2: CINEMATIC SCENES
+================================= */
+
+.scene {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  min-height: 100%;
+  padding: 35px 22px 100px;
+
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+
+  text-align: center;
+  overflow-x: hidden;
+  overflow-y: auto;
+
+  opacity: 0;
+  visibility: hidden;
+  pointer-events: none;
+
+  transform: scale(1.035) translateY(12px);
+
+  transition:
+    opacity 1.1s ease,
+    transform 1.2s ease,
+    visibility 1.2s ease;
+}
+
+.scene.active {
+  opacity: 1;
+  visibility: visible;
+  pointer-events: auto;
+  transform: scale(1) translateY(0);
+  z-index: 2;
+}
+
+.scene.leaving {
+  opacity: 0;
+  transform: scale(0.97) translateY(-15px);
+  pointer-events: none;
+}
+
+.scene h1,
+.scene h2,
+.scene h3 {
+  font-family: 'Cormorant Garamond', serif;
+  font-weight: 500;
+  line-height: 1.15;
+}
+
+.scene h1 {
+  font-size: clamp(42px, 11vw, 76px);
+}
+
+.scene h2 {
+  font-size: clamp(34px, 8vw, 54px);
+}
+
+.scene p {
+  color: var(--soft);
+  font-size: 14px;
+  line-height: 1.9;
+  max-width: 520px;
+}
+
+.scene-content {
+  width: 100%;
+  max-width: 850px;
+  margin: auto;
+}
+
+.gold-text {
+  color: var(--gold);
+}
+
+.script-text {
+  font-family: 'Cormorant Garamond', serif;
+  font-style: italic;
+}
+
+.small-label {
+  color: var(--gold);
+  font-size: 10px;
+  letter-spacing: 4px;
+  text-transform: uppercase;
+}
+
+/* =================================
+   PART 3: TYPOGRAPHY & BUTTONS
+================================= */
+
+.intro-content,
+.welcome-content {
+  position: relative;
+  z-index: 5;
+  width: 100%;
+  max-width: 700px;
+  padding: 20px;
+}
+
+.intro-content h1 {
+  color: var(--cream);
+  text-shadow: 0 0 35px #D9B47755;
+  letter-spacing: 2px;
+}
+
+.intro-content p {
+  margin-top: 18px;
+  letter-spacing: 2px;
+}
+
+.welcome-content h1 {
+  margin: 18px 0;
+  color: var(--gold);
+  text-shadow: 0 0 30px #D9B47744;
+}
+
+.welcome-content p {
+  margin: 12px auto;
+}
+
+.eyebrow {
+  color: var(--gold);
+  font-size: 10px;
+  letter-spacing: 5px;
+  text-transform: uppercase;
+}
+
+.gold-line {
+  width: 75px;
+  height: 1px;
+  margin: 24px auto;
+  background: linear-gradient(
+    90deg,
+    transparent,
+    var(--gold),
+    transparent
+  );
+}
+
+.continue-button {
+  position: fixed;
+  z-index: 50;
+  bottom: max(22px, env(safe-area-inset-bottom));
+  left: 50%;
+  transform: translateX(-50%);
+
+  min-width: 190px;
+  padding: 13px 23px;
+
+  border: 1px solid #D9B47788;
+  border-radius: 40px;
+
+  background: #241326DD;
+  color: var(--gold);
+
+  font-size: 10px;
+  letter-spacing: 3px;
+
+  backdrop-filter: blur(12px);
+  box-shadow: 0 5px 30px #00000044;
+
+  transition:
+    background 0.3s ease,
+    box-shadow 0.3s ease,
+    border-color 0.3s ease;
+}
+
+.continue-button:active {
+  background: #54304F;
+  box-shadow: 0 0 25px #D9B47744;
+}
+
+.continue-button span {
+  margin-left: 8px;
+  color: var(--cream);
+}
+
+.continue-button[hidden] {
+  display: none;
+}
+
+button:focus-visible {
+  outline: 2px solid var(--gold);
+  outline-offset: 5px;
+}
+
+/* =================================
+   PART 4: GRAND THEATRE CURTAINS
+================================= */
+
+.intro-scene {
+  background:
+    radial-gradient(
+      ellipse at center,
+      #4b1730 0%,
+      #210d20 55%,
+      #09060d 100%
+    );
+}
+
+.curtain {
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  width: 53%;
+  z-index: 10;
+  overflow: hidden;
+
+  background:
+    repeating-linear-gradient(
+      90deg,
+      #4a0005 0px,
+      #b50916 12px,
+      #ed2630 22px,
+      #85000a 34px,
+      #390006 45px
+    );
+
+  box-shadow:
+    inset 0 0 35px #170000,
+    0 0 35px #00000099;
+
+  transition:
+    transform 6s cubic-bezier(.72,0,.18,1);
+}
+
+.curtain-left {
+  left: 0;
+  border-right: 3px solid #650009;
+}
+
+.curtain-right {
+  right: 0;
+  border-left: 3px solid #650009;
+}
+
+.curtain::before {
+  content: "";
+  position: absolute;
+  top: -8%;
+  left: -10%;
+  width: 120%;
+  height: 27%;
+
+  border-radius: 0 0 50% 50%;
+
+  background:
+    linear-gradient(
+      180deg,
+      #fa3439,
+      #a6000c 65%,
+      #480006
+    );
+
+  box-shadow:
+    0 12px 18px #18000099;
+}
+
+.curtain::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+
+  background:
+    repeating-linear-gradient(
+      90deg,
+      transparent 0px,
+      #ff697033 5px,
+      transparent 12px,
+      #21000077 25px
+    );
+
+  pointer-events: none;
+}
+
+.curtain-folds {
+  position: absolute;
+  inset: 0;
+  z-index: 2;
+
+  background:
+    repeating-linear-gradient(
+      90deg,
+      #24000055 0px,
+      transparent 9px,
+      #ff555522 20px,
+      transparent 34px
+    );
+}
+
+/* CURTAIN OPENING */
+
+.curtain-left.open {
+  transform: translateX(-105%);
+}
+
+.curtain-right.open {
+  transform: translateX(105%);
+}
+
+
+/* =================================
+   PART 5: THEATRE LIGHT & STAGE
+================================= */
+
+.theatre-light {
+  position: absolute;
+  inset: 0;
+  z-index: 1;
+  pointer-events: none;
+
+  background:
+    radial-gradient(
+      ellipse at 50% 32%,
+      #ffe2a044 0%,
+      #d9b47722 25%,
+      transparent 65%
+    );
+
+  opacity: 0;
+  transition: opacity 3s ease;
+}
+
+.intro-scene.opening .theatre-light,
+.intro-scene.revealed .theatre-light {
+  opacity: 1;
+}
+
+.stage-floor {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  width: 100%;
+  height: 24%;
+  z-index: 2;
+  pointer-events: none;
+
+  background:
+    radial-gradient(
+      ellipse at 50% 0%,
+      #d9b47733,
+      transparent 65%
+    ),
+    linear-gradient(
+      180deg,
+      transparent,
+      #09050c 90%
+    );
+}
+
+.stage-floor::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 10%;
+  width: 80%;
+  height: 2px;
+
+  background: linear-gradient(
+    90deg,
+    transparent,
+    #d9b47766,
+    transparent
+  );
+
+  box-shadow: 0 0 25px #d9b47755;
+}
+
+.intro-content {
+  opacity: 0;
+  transform: translateY(25px);
+  transition:
+    opacity 1.8s ease,
+    transform 1.8s ease;
+}
+
+.intro-scene.revealed .intro-content {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+.intro-scene.opening .intro-content {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+
+/* =================================
+   PART 6: VELVET FABRIC DETAILS
+================================= */
+
+.curtain {
+  background-color: #85000a;
+
+  background-image:
+    linear-gradient(
+      90deg,
+      #250005 0%,
+      #a9000c 8%,
+      #f02b35 16%,
+      #750008 25%,
+      #d81725 35%,
+      #390006 45%,
+      #c50b18 57%,
+      #f13a40 68%,
+      #680007 80%,
+      #bd101b 91%,
+      #260004 100%
+    );
+}
+
+.curtain-folds {
+  background:
+    repeating-linear-gradient(
+      90deg,
+      #17000099 0px,
+      transparent 5px,
+      #ff777722 12px,
+      transparent 19px,
+      #31000088 28px,
+      transparent 39px
+    );
+
+  box-shadow:
+    inset 12px 0 18px #19000066,
+    inset -12px 0 18px #19000066;
+}
+
+.curtain-folds::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 7px;
+
+  background: linear-gradient(
+    180deg,
+    #ff7777,
+    #9b000b,
+    #3c0005
+  );
+
+  box-shadow: 0 5px 12px #18000088;
+}
+
+.curtain-folds::after {
+  content: "";
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  width: 100%;
+  height: 24px;
+
+  background:
+    linear-gradient(
+      180deg,
+      #8c000a,
+      #e51c29 35%,
+      #650007 80%,
+      #250003
+    );
+
+  border-top: 2px solid #ff656544;
+  box-shadow: 0 -5px 15px #18000088;
+}
+
+.curtain-left {
+  box-shadow:
+    inset -18px 0 25px #17000099,
+    inset 12px 0 20px #ff555522,
+    12px 0 35px #00000088;
+}
+
+.curtain-right {
+  box-shadow:
+    inset 18px 0 25px #17000099,
+    inset -12px 0 20px #ff555522,
+    -12px 0 35px #00000088;
+}
+
+/* =================================
+   PART 7: MAGICAL GOLDEN ATMOSPHERE
+================================= */
+
+.theatre-light::before {
+  content: "";
+  position: absolute;
+  top: -15%;
+  left: 50%;
+  width: 120%;
+  height: 90%;
+
+  transform: translateX(-50%);
+
+  background: conic-gradient(
+    from 250deg at 50% 0%,
+    transparent,
+    #ffe5a011,
+    transparent 18%,
+    #ffe5a022,
+    transparent 35%,
+    #ffe5a011,
+    transparent
+  );
+
+  filter: blur(15px);
+  animation: light-rays 9s ease-in-out infinite alternate;
+}
+
+.theatre-light::after {
+  content: "";
+  position: absolute;
+  width: 240px;
+  height: 240px;
+  top: 25%;
+  left: 50%;
+
+  transform: translateX(-50%);
+  border-radius: 50%;
+
+  background: #ffdf9b;
+  opacity: 0.12;
+  filter: blur(90px);
+
+  animation: golden-pulse 4s ease-in-out infinite;
+}
+
+@keyframes light-rays {
+  from {
+    opacity: 0.35;
+    transform: translateX(-50%) rotate(-4deg);
+  }
+
+  to {
+    opacity: 0.8;
+    transform: translateX(-50%) rotate(4deg);
+  }
+}
+
+@keyframes golden-pulse {
+  0%, 100% {
+    opacity: 0.08;
+    transform: translateX(-50%) scale(0.85);
+  }
+
+  50% {
+    opacity: 0.22;
+    transform: translateX(-50%) scale(1.2);
+  }
+}
+
+.ambient-glow {
+  animation: ambient-breathe 8s ease-in-out infinite alternate;
+}
+
+@keyframes ambient-breathe {
+  from {
+    opacity: 0.07;
+    transform: translateX(-50%) scale(0.9);
+  }
+
+  to {
+    opacity: 0.16;
+    transform: translateX(-50%) scale(1.12);
+  }
+}
+
+.gold-line {
+  box-shadow: 0 0 14px #D9B47755;
+}
+
+/* =================================
+   PART 8: FINAL FINISHING
+================================= */
+
+/* Smooth curtain opening */
+
+.curtain-left,
+.curtain-right {
+  will-change: transform;
+  backface-visibility: hidden;
+}
+
+/* Intro scene finishing */
+
+.intro-scene {
+  isolation: isolate;
+}
+
+.intro-scene .curtain {
+  pointer-events: none;
+}
+
+.intro-scene .curtain-folds {
+  pointer-events: none;
+}
+
+/* Toast message */
+
+#toast {
+  position: fixed;
+  left: 50%;
+  bottom: 85px;
+  z-index: 100;
+
+  max-width: 85%;
+  padding: 12px 20px;
+
+  transform: translateX(-50%);
+  border: 1px solid #D9B47766;
+  border-radius: 30px;
+
+  background: #241326EE;
+  color: var(--cream);
+
+  font-size: 12px;
+  text-align: center;
+
+  opacity: 0;
+  pointer-events: none;
+}
+
+/* Mobile screen adjustments */
+
+@media (max-width: 600px) {
+
+  .scene {
+    padding: 28px 18px 100px;
+  }
+
+  .scene h1 {
+    font-size: clamp(38px, 12vw, 58px);
+  }
+
+  .scene h2 {
+    font-size: clamp(30px, 9vw, 44px);
+  }
+
+  .scene p {
+    font-size: 13px;
+  }
+
+  .curtain {
+    width: 53%;
+  }
+
+  .intro-content {
+    padding: 15px;
+  }
+
+  .continue-button {
+    min-width: 175px;
+    padding: 12px 18px;
+  }
+}
+
+/* Short screen adjustments */
+
+@media (max-height: 650px) {
+  .scene {
+    padding-top: 18px;
+    padding-bottom: 85px;
+  }
+
+  .intro-content h1 {
+    font-size: clamp(34px, 9vw, 55px);
+  }
+
+  .gold-line {
+    margin: 14px auto;
+  }
+}
+
+/* Reduced motion accessibility */
+
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    transition-duration: 0.01ms !important;
+  }
+}
+
+
+/* =================================
+   BIRTHDAY COUNTDOWN DESIGN
+================================= */
+
+.countdown-widget {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 10px;
+  width: 100%;
+  max-width: 480px;
+  margin: 30px auto;
+}
+
+.countdown-box {
+  padding: 18px 5px;
+  border: 1px solid #D9B47766;
+  border-radius: 14px;
+  background: #32152F88;
+  backdrop-filter: blur(10px);
+  box-shadow: 0 8px 25px #00000033;
+}
+
+.countdown-box strong {
+  display: block;
+  color: var(--gold);
+  font-family: 'Cormorant Garamond', serif;
+  font-size: clamp(25px, 7vw, 38px);
+  font-weight: 500;
+}
+
+.countdown-box span {
+  display: block;
+  margin-top: 5px;
+  color: var(--soft);
+  font-size: 9px;
+  letter-spacing: 2px;
+  text-transform: uppercase;
+}
+
+@media (max-width: 360px) {
+  .countdown-widget {
+    gap: 6px;
+  }
+
+  .countdown-box {
+    padding: 14px 3px;
+  }
+}
+
+/* =================================
+   PART 9: MAGICAL STAR UNIVERSE
+================================= */
+
+.star {
+  position: absolute;
+  width: 3px;
+  height: 3px;
+  border-radius: 50%;
+  background: #FFF0F5;
+  box-shadow: 0 0 8px #FFF0F5;
+  animation: star-twinkle 3s ease-in-out infinite alternate;
+}
+
+.star:nth-child(3n) {
+  background: var(--gold);
+  box-shadow: 0 0 10px var(--gold);
+}
+
+@keyframes star-twinkle {
+  from {
+    opacity: 0.2;
+    transform: scale(0.7);
+  }
+
+  to {
+    opacity: 1;
+    transform: scale(1.5);
+  }
+}
+
+.floating-particle {
+  position: absolute;
+  bottom: -15px;
+  width: 4px;
+  height: 4px;
+  border-radius: 50%;
+  background: var(--gold);
+  box-shadow: 0 0 12px var(--gold);
+  animation: particle-rise linear infinite;
+}
+
+@keyframes particle-rise {
+  0% {
+    transform: translateY(0) translateX(0);
+    opacity: 0;
+  }
+
+  15% {
+    opacity: 0.8;
+  }
+
+  85% {
+    opacity: 0.6;
+  }
+
+  100% {
+    transform: translateY(-110vh) translateX(35px);
+    opacity: 0;
+  }
+}
+
+
+/* =================================
+   PART 10: MIDNIGHT FLOWER GARDEN
+================================= */
+
+.flower {
+  position: relative;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+
+  width: 76px;
+  height: 76px;
+  margin: 12px;
+
+  border: 1px solid #D9B47755;
+  border-radius: 50%;
+
+  background:
+    radial-gradient(circle, #6B3D61, #32152F);
+
+  color: var(--cream);
+  font-size: 32px;
+
+  box-shadow: 0 0 22px #D9B47722;
+
+  transition:
+    transform 0.4s ease,
+    box-shadow 0.4s ease;
+}
+
+.flower:active {
+  transform: scale(1.18);
+  box-shadow: 0 0 30px #D9B47788;
+}
+
+.flower:hover {
+  transform: translateY(-6px);
+  box-shadow: 0 0 28px #D9B47766;
+}
+
+#flower-message {
+  width: 90%;
+  max-width: 420px;
+  min-height: 65px;
+
+  margin: 25px auto 0;
+  padding: 18px;
+
+  border: 1px solid #D9B47755;
+  border-radius: 16px;
+
+  background: #32152F99;
+  color: var(--cream);
+
+  font-family: 'Cormorant Garamond', serif;
+  font-size: 20px;
+  line-height: 1.5;
+
+  box-shadow: 0 10px 30px #00000033;
+}
+
+
+/* =================================
+   PART 11: INTERACTIVE CARDS
+================================= */
+
+.reason-card,
+.note-card {
+  cursor: pointer;
+  position: relative;
+  transition: transform 0.35s ease,
+              box-shadow 0.35s ease,
+              border-color 0.35s ease;
+}
+
+.reason-card:hover,
+.note-card:hover {
+  transform: translateY(-8px) scale(1.03);
+  box-shadow: 0 12px 35px rgba(217, 180, 119, 0.22);
+  border-color: var(--gold);
+}
+
+.reason-card:active,
+.note-card:active {
+  transform: scale(0.96);
+}
+
+#reason-message,
+#note-message,
+#flower-message {
+  margin: 24px auto 0;
+  max-width: 520px;
+  padding: 18px 22px;
+  color: var(--cream);
+  text-align: center;
+  line-height: 1.8;
+  font-family: "Cormorant Garamond", serif;
+  font-size: 19px;
+  background: rgba(255, 240, 245, 0.06);
+  border: 1px solid rgba(217, 180, 119, 0.35);
+  border-radius: 16px;
+  backdrop-filter: blur(12px);
+  transition: opacity 0.3s ease;
+  box-shadow: 0 8px 30px rgba(0, 0, 0, 0.15);
+}
+
+/* =================================
+   PART 12: VINTAGE LETTER
+================================= */
+
+#envelope {
+  position: relative;
+  cursor: pointer;
+  transition: transform 0.4s ease;
+}
+
+#envelope:hover {
+  transform: translateY(-6px);
+}
+
+#letter-content {
+  width: min(88vw, 560px);
+  margin: 25px auto;
+  padding: 30px 25px;
+  color: #493444;
+  background: #fff1d8;
+  border: 2px solid #d9b477;
+  border-radius: 5px;
+  box-shadow: 0 18px 55px rgba(0, 0, 0, 0.3);
+  line-height: 1.9;
+  font-family: "Cormorant Garamond", serif;
+  font-size: 20px;
+  animation: letterReveal 1s ease both;
+}
+
+#letter-content[hidden] {
+  display: none;
+}
+
+#typed-letter {
+  white-space: pre-wrap;
+}
+
+#envelope.opened {
+  transform: scale(1.04);
+}
+
+@keyframes letterReveal {
+  from {
+    opacity: 0;
+    transform: translateY(25px);
+  }
+
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+/* =================================
+   PART 13: CAKE CELEBRATION
+================================= */
+
+.candle {
+  position: relative;
+  transition: opacity 0.4s ease;
+}
+
+.candle i {
+  display: block;
+  width: 10px;
+  height: 15px;
+  margin: 0 auto;
+  background: radial-gradient(circle, #fff8c9, #ffb52e, #ff6b35);
+  border-radius: 50% 50% 45% 45%;
+  box-shadow: 0 0 12px #ffb52e,
+              0 0 25px rgba(255, 181, 46, 0.7);
+  animation: flameDance 0.7s infinite alternate;
+}
+
+.candle.blown i {
+  opacity: 0;
+  transform: scale(0);
+}
+
+@keyframes flameDance {
+  from {
+    transform: scale(1) rotate(-5deg);
+  }
+
+  to {
+    transform: scale(1.15) rotate(5deg);
+  }
+}
+
+#cake-message {
+  color: var(--gold);
+  text-align: center;
+  font-family: "Cormorant Garamond", serif;
+  font-size: 25px;
+  margin-top: 22px;
+}
+
+#confetti-container {
+  position: fixed;
+  inset: 0;
+  overflow: hidden;
+  pointer-events: none;
+  z-index: 20;
+}
+
+.confetti-piece {
+  position: absolute;
+  top: -20px;
+  width: 9px;
+  height: 15px;
+  background: hsl(var(--confetti-hue, 45), 85%, 65%);
+  animation: confettiFall 3s linear forwards;
+}
+
+.confetti-piece:nth-child(3n) {
+  --confetti-hue: 330;
+}
+
+.confetti-piece:nth-child(3n + 1) {
+  --confetti-hue: 45;
+}
+
+.confetti-piece:nth-child(3n + 2) {
+  --confetti-hue: 190;
+}
+
+@keyframes confettiFall {
+  to {
+    transform: translateY(110vh) rotate(720deg);
+    opacity: 0;
+  }
+}
+
+
+/* =================================
+   PART 14: MAGICAL SECRET BOX
+================================= */
+
+#secret-box {
+  position: relative;
+  width: 125px;
+  height: 110px;
+  margin: 25px auto;
+  cursor: pointer;
+  border: 2px solid var(--gold);
+  border-radius: 15px;
+  background: linear-gradient(145deg, #71354f, #32152f);
+  box-shadow: 0 0 25px rgba(217, 180, 119, 0.25);
+  transition: transform 0.4s ease,
+              box-shadow 0.4s ease;
+}
+
+#secret-box::before {
+  content: "✧";
+  position: absolute;
+  inset: 0;
+  display: grid;
+  place-items: center;
+  color: var(--gold);
+  font-size: 55px;
+  transition: transform 0.5s ease;
+}
+
+#secret-box:hover {
+  transform: translateY(-8px);
+  box-shadow: 0 0 40px rgba(217, 180, 119, 0.55);
+}
+
+#secret-box.opened::before {
+  transform: rotate(25deg) scale(1.2);
+}
+
+#secret-message {
+  max-width: 520px;
+  margin: 20px auto;
+  padding: 22px;
+  color: var(--cream);
+  text-align: center;
+  line-height: 1.9;
+  font-family: "Cormorant Garamond", serif;
+  font-size: 21px;
+  background: rgba(217, 180, 119, 0.08);
+  border: 1px solid rgba(217, 180, 119, 0.4);
+  border-radius: 18px;
+  animation: letterReveal 0.8s ease both;
+}
+
+#secret-message[hidden] {
+  display: none;
+}
+
+
+/* =================================
+   PART 15: CONFESSION REVEAL
+================================= */
+
+#confession-content {
+  max-width: 620px;
+  margin: 28px auto;
+  padding: 28px 24px;
+  color: var(--cream);
+  text-align: center;
+  line-height: 2;
+  font-family: "Cormorant Garamond", serif;
+  font-size: 23px;
+  background: linear-gradient(
+    145deg,
+    rgba(107, 61, 97, 0.25),
+    rgba(217, 180, 119, 0.08)
+  );
+  border: 1px solid rgba(217, 180, 119, 0.45);
+  border-radius: 22px;
+  box-shadow: 0 15px 50px rgba(0, 0, 0, 0.2);
+}
+
+#confession-content[hidden] {
+  display: none;
+}
+
+#confession-content.revealed {
+  animation: confessionReveal 1.4s ease both;
+}
+
+@keyframes confessionReveal {
+  0% {
+    opacity: 0;
+    transform: translateY(35px) scale(0.94);
+    filter: blur(8px);
+  }
+
+  100% {
+    opacity: 1;
+    transform: translateY(0) scale(1);
+    filter: blur(0);
+  }
+}
+
+#reveal-confession:disabled {
+  opacity: 0.75;
+  cursor: default;
+}
+
+
+/* =================================
+   PART 16: GRAND FINALE
+================================= */
+
+#finale {
+  background:
+    radial-gradient(
+      ellipse at center,
+      rgba(107, 61, 97, 0.32),
+      transparent 70%
+    );
+}
+
+#finale h1,
+#finale h2 {
+  color: var(--cream);
+  text-shadow:
+    0 0 15px rgba(217, 180, 119, 0.35),
+    0 0 35px rgba(217, 180, 119, 0.18);
+}
+
+#finale p {
+  color: var(--soft);
+  line-height: 2;
+}
+
+#replay {
+  margin-top: 30px;
+  padding: 15px 35px;
+  color: var(--night);
+  background: linear-gradient(135deg, #f5d99c, #c89b55);
+  border: none;
+  border-radius: 50px;
+  font-family: "Poppins", sans-serif;
+  font-size: 14px;
+  font-weight: 600;
+  letter-spacing: 1px;
+  cursor: pointer;
+  box-shadow: 0 8px 30px rgba(217, 180, 119, 0.25);
+  transition: transform 0.3s ease,
+              box-shadow 0.3s ease;
+}
+
+#replay:hover {
+  transform: translateY(-4px) scale(1.04);
+  box-shadow: 0 12px 38px rgba(217, 180, 119, 0.45);
+}
+
+
+/* =================================
+   PART 17: MOBILE RESPONSIVENESS
+================================= */
+
+@media (max-width: 600px) {
+
+  .scene {
+    padding: 24px 16px;
+  }
+
+  .scene h1 {
+    font-size: clamp(32px, 9vw, 48px);
+  }
+
+  .scene h2 {
+    font-size: clamp(25px, 7vw, 36px);
+  }
+
+  .scene p {
+    font-size: 15px;
+    line-height: 1.8;
+  }
+
+  .continue-button {
+    bottom: 20px;
+    padding: 13px 23px;
+    font-size: 11px;
+  }
+
+  .reason-card,
+  .note-card {
+    max-width: 100%;
+  }
+
+  #letter-content {
+    padding: 22px 18px;
+    font-size: 18px;
+  }
+
+  #confession-content {
+    padding: 22px 17px;
+    font-size: 20px;
+  }
+
+  #secret-message {
+    padding: 18px;
+    font-size: 19px;
+  }
+
+  #cake-message {
+    font-size: 22px;
+  }
+
+  #replay {
+    padding: 13px 27px;
+  }
+
+}
+
+@media (max-height: 600px) {
+
+  .scene {
+    overflow-y: auto;
+    justify-content: flex-start;
+  }
+
+  .continue-button {
+    bottom: 10px;
+  }
+
+}
+
+
+/* =================================
+   FIX: REASONS CARD LAYOUT
+================================= */
+
+#reasons .reason-card {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  vertical-align: middle;
+
+  width: calc(33.33% - 18px);
+  min-width: 0;
+  min-height: 65px;
+  margin: 7px;
+
+  padding: 12px 8px;
+  box-sizing: border-box;
+
+  color: var(--cream);
+  background: linear-gradient(
+    145deg,
+    rgba(107, 61, 97, 0.48),
+    rgba(50, 21, 47, 0.85)
+  );
+
+  border: 1px solid rgba(217, 180, 119, 0.45);
+  border-radius: 14px;
+
+  font-family: "Poppins", sans-serif;
+  font-size: 13px;
+  font-weight: 500;
+  line-height: 1.5;
+  text-align: center;
+  white-space: normal;
+
+  box-shadow: 0 5px 18px rgba(0, 0, 0, 0.2);
+}
+
+#reasons .reason-card:active {
+  background: rgba(217, 180, 119, 0.2);
+}
+
+@media (max-width: 600px) {
+  #reasons .reason-card {
+    width: calc(50% - 18px);
+    min-height: 58px;
+    font-size: 12px;
+    margin: 6px;
+  }
+}
+
+
+/* =================================
+   GLOBAL FIX: BUTTONS & CARDS
+================================= */
+
+button {
+  font: inherit;
+  color: inherit;
+  -webkit-appearance: none;
+  appearance: none;
+  outline: none;
+}
+
+.reason-card,
+.note-card,
+.flower {
+  box-sizing: border-box;
+  font-family: "Poppins", sans-serif;
+  color: var(--cream);
+  background: linear-gradient(
+    145deg,
+    rgba(107, 61, 97, 0.45),
+    rgba(50, 21, 47, 0.9)
+  );
+  border: 1px solid rgba(217, 180, 119, 0.4);
+  border-radius: 16px;
+  box-shadow: 0 8px 25px rgba(0, 0, 0, 0.2);
+  white-space: normal;
+  overflow-wrap: break-word;
+}
+
+.reason-card,
+.note-card {
+  padding: 14px;
+  margin: 7px;
+  line-height: 1.6;
+  font-size: 13px;
+}
+
+.reason-card:focus-visible,
+.note-card:focus-visible,
+.flower:focus-visible {
+  outline: 2px solid var(--gold);
+  outline-offset: 4px;
+}
+
+/* =================================
+   GLOBAL BUTTON DESIGN FIX
+================================= */
+
+button {
+  -webkit-appearance: none;
+  appearance: none;
+  font-family: "Poppins", sans-serif;
+  color: var(--cream);
+  background: transparent;
+  border: none;
+  outline-offset: 4px;
+  cursor: pointer;
+}
+
+#open-letter,
+#blow-candles,
+#celebrate,
+#reveal-confession {
+  display: inline-block;
+  margin: 9px 5px;
+  padding: 13px 24px;
+
+  color: var(--gold);
+  background: linear-gradient(
+    135deg,
+    rgba(107, 61, 97, 0.65),
+    rgba(50, 21, 47, 0.9)
+  );
+
+  border: 1px solid rgba(217, 180, 119, 0.65);
+  border-radius: 40px;
+
+  font-size: 12px;
+  font-weight: 600;
+  letter-spacing: 1px;
+
+  box-shadow: 0 5px 20px rgba(0, 0, 0, 0.2);
+  transition: 0.3s ease;
+}
+
+#open-letter:hover,
+#blow-candles:hover,
+#celebrate:hover,
+#reveal-confession:hover {
+  transform: translateY(-3px);
+  background: rgba(217, 180, 119, 0.16);
+  box-shadow: 0 0 22px rgba(217, 180, 119, 0.25);
+}
+
+#reveal-confession:disabled {
+  opacity: 0.65;
+}
+
+/* =================================
+   PUCHKI'S BEAUTIFUL BIRTHDAY CAKE
+================================= */
+
+.cake-art {
+  position: relative;
+  width: 280px;
+  height: 230px;
+  margin: 35px auto;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: flex-end;
+}
+
+.cake-layer {
+  position: relative;
+  height: 55px;
+  border-radius: 12px 12px 18px 18px;
+  background: linear-gradient(
+    135deg,
+    #f7c6d9,
+    #d985ad,
+    #a94f7e
+  );
+  border-bottom: 5px solid #8b426c;
+  box-shadow: 0 8px 18px #0005;
+}
+
+.cake-layer-one {
+  width: 190px;
+  z-index: 2;
+}
+
+.cake-layer-two {
+  width: 235px;
+  height: 65px;
+  z-index: 1;
+}
+
+.cake-top {
+  width: 190px;
+  height: 24px;
+  border-radius: 50%;
+  background: #ffe3ed;
+  border: 3px solid #d99ab5;
+  margin-bottom: -8px;
+  z-index: 3;
+}
+
+.cake-plate {
+  width: 265px;
+  height: 15px;
+  border-radius: 50%;
+  background: linear-gradient(
+    #fff0d0,
+    #c69a52
+  );
+  box-shadow: 0 5px 20px #d9a84d55;
+}
+
+.cake-candles {
+  position: absolute;
+  top: 0;
+  display: flex;
+  gap: 22px;
+  z-index: 5;
+}
+
+.candle {
+  width: 12px;
+  height: 48px;
+  border-radius: 4px;
+  background: repeating-linear-gradient(
+    135deg,
+    #fff0d0 0 5px,
+    #d99a50 5px 9px
+  );
+  position: relative;
+}
+
+.candle i {
+  position: absolute;
+  width: 13px;
+  height: 19px;
+  border-radius: 50% 50% 50% 0;
+  background: radial-gradient(
+    circle,
+    #fff8a5,
+    #ffb52e,
+    #ff741c
+  );
+  top: -24px;
+  left: 0;
+  transform: rotate(-45deg);
+  box-shadow: 0 0 18px #ffae32;
+}
+
+.candle.blown i {
+  opacity: 0;
+}
+
+/* =================================
+   PUCHKI LETTER - READABLE TEXT
+================================= */
+
+#letter-content {
+  color: #493044 !important;
+  background: linear-gradient(
+    145deg,
+    #fff5e5,
+    #f8e4c9
+  ) !important;
+}
+
+#typed-letter {
+  color: #493044 !important;
+  font-weight: 500;
+  text-shadow: none !important;
+  opacity: 1 !important;
+}
+
+#letter-content p,
+#letter-content span {
+  color: #493044 !important;
+}
+
+
+/* LUXURY CAKE NAME DESIGN */
+
+.cake-top {
+  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  overflow: visible;
+}
+
+.cake-inscription {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  color: #743653;
+  font-family: "Cormorant Garamond", serif;
+  font-size: 15px;
+  font-weight: 700;
+  letter-spacing: 1px;
+  line-height: 1.1;
+  white-space: nowrap;
+  text-shadow: 0 1px 1px #fff;
+  z-index: 10;
+}
+
+.cake-inscription small {
+  margin-top: 3px;
+  color: #a87932;
+  font-family: "Poppins", sans-serif;
+  font-size: 9px;
+  letter-spacing: 3px;
+}
+
+/* =================================
+   PUCHKI - LUXURY 3D BIRTHDAY CAKE
+================================= */
+
+.cake-art {
+  position: relative;
+  width: min(90vw, 360px);
+  height: 250px;
+  margin: 45px auto 35px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: flex-end;
+  perspective: 900px;
+}
+
+/* Cake top surface */
+
+.cake-top {
+  position: relative;
+  width: 210px;
+  height: 48px;
+  margin-bottom: -10px;
+  z-index: 5;
+  border-radius: 50%;
+  display: block;
+  overflow: visible;
+  background: radial-gradient(
+    ellipse at 35% 25%,
+    #fff5ed,
+    #ffdce8 55%,
+    #e9a6c2
+  );
+  border: 3px solid #f5c9d9;
+  box-shadow:
+    inset 0 -5px 8px #c8799a55,
+    0 5px 12px #0004;
+}
+
+/* Handwritten icing name */
+
+.cake-inscription {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%) rotate(-4deg);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  color: #a64270 !important;
+  font-family: "Segoe Print", "Comic Sans MS", cursive;
+  font-size: 17px;
+  font-weight: 700;
+  letter-spacing: 0;
+  line-height: 1.1;
+  white-space: nowrap;
+  text-shadow: 0 1px 1px #fff;
+}
+
+.cake-inscription small {
+  margin-top: 3px;
+  color: #b66c83 !important;
+  font-family: "Segoe Print", "Comic Sans MS", cursive;
+  font-size: 12px;
+  letter-spacing: 2px;
+}
+
+/* Upper cake layer */
+
+.cake-layer-one {
+  width: 210px;
+  height: 65px;
+  z-index: 4;
+  border-radius: 15px 15px 25px 25px;
+  background: linear-gradient(
+    100deg,
+    #f9c5d9,
+    #e99cbd 40%,
+    #bd6794 100%
+  );
+  border-bottom: 7px solid #a94f7e;
+  box-shadow:
+    inset 8px 0 12px #fff5,
+    inset -12px 0 15px #78305244,
+    0 12px 18px #0005;
+}
+
+/* Lower cake layer */
+
+.cake-layer-two {
+  width: 260px;
+  height: 75px;
+  z-index: 3;
+  border-radius: 20px 20px 28px 28px;
+  background: linear-gradient(
+    100deg,
+    #f8c9dc,
+    #df8eb3 45%,
+    #a94f7e 100%
+  );
+  border-bottom: 8px solid #91446c;
+  box-shadow:
+    inset 9px 0 15px #fff6,
+    inset -14px 0 18px #6d294344,
+    0 15px 20px #0005;
+}
+
+/* Golden serving plate */
+
+.cake-plate {
+  width: 290px;
+  height: 18px;
+  z-index: 2;
+  border-radius: 50%;
+  background: linear-gradient(
+    #fff0c9,
+    #d6ae64,
+    #9d7438
+  );
+  box-shadow: 0 10px 22px #0006;
+}
+
+/* Candles on the cake */
+
+.cake-candles {
+  position: absolute;
+  top: 4px;
+  display: flex;
+  gap: 25px;
+  z-index: 8;
+}
+
+.candle {
+  width: 12px;
+  height: 48px;
+  border-radius: 5px;
+  background: repeating-linear-gradient(
+    135deg,
+    #fff4dd 0 5px,
+    #dca65d 5px 9px
+  );
+  box-shadow: 2px 3px 6px #0004;
+}
+
+.candle i {
+  box-shadow: 0 0 18px #ffae32;
+}
+
+/* =================================
+   LUXURY CAKE DECORATIONS
+================================= */
+
+/* Cream piping on upper layer */
+
+.cake-layer-one {
+  border-top: 9px solid #fff0e9;
+  border-bottom: 8px solid #a94f7e;
+
+  background:
+    radial-gradient(circle at 12px 0,
+      #fff0e9 0 5px, transparent 6px),
+    linear-gradient(
+      100deg,
+      #f9c5d9,
+      #e99cbd 45%,
+      #bd6794
+    );
+}
+
+/* Cream piping on lower layer */
+
+.cake-layer-two {
+  border-top: 10px solid #fff0e9;
+
+  background:
+    radial-gradient(circle at 15px 0,
+      #fff0e9 0 5px, transparent 6px),
+    linear-gradient(
+      100deg,
+      #f8c9dc,
+      #df8eb3 45%,
+      #a94f7e
+    );
+}
+
+/* Golden pearls on cake surface */
+
+.cake-top {
+  background:
+    radial-gradient(circle at 12% 35%, #d7a64e 0 2px, transparent 3px),
+    radial-gradient(circle at 85% 35%, #d7a64e 0 2px, transparent 3px),
+    radial-gradient(circle at 22% 70%, #fff 0 2px, transparent 3px),
+    radial-gradient(circle at 78% 70%, #fff 0 2px, transparent 3px),
+    radial-gradient(ellipse at 35% 25%, #fff5ed, #ffdce8 55%, #e9a6c2);
+}
+
+/* Strawberry decorations */
+
+.cake-top::before {
+  content: "🍓";
+  position: absolute;
+  left: 12px;
+  top: -23px;
+  font-size: 23px;
+  transform: rotate(-18deg);
+  filter: drop-shadow(0 3px 3px #0003);
+}
+
+.cake-top::after {
+  content: "🍓";
+  position: absolute;
+  right: 12px;
+  top: -23px;
+  font-size: 23px;
+  transform: rotate(18deg);
+  filter: drop-shadow(0 3px 3px #0003);
+}
+
+/* Golden sparkle details */
+
+.cake-art {
+  filter: drop-shadow(0 12px 18px #0003);
+}
+
+/* Glowing candle flames */
+
+.candle i {
+  animation: candleGlow 1.5s ease-in-out infinite alternate;
+}
+
+@keyframes candleGlow {
+  from {
+    transform: rotate(-45deg) scale(0.92);
+    filter: brightness(1);
+  }
+
+  to {
+    transform: rotate(-40deg) scale(1.08);
+    filter: brightness(1.25);
+  }
+}
+
+/* =================================
+   LUXURY FRONT FACE DECORATION
+================================= */
+
+/* Upper layer front design */
+
+.cake-layer-one {
+  position: relative;
+  overflow: hidden;
+  box-shadow:
+    inset 8px 0 15px #fff6,
+    inset -12px 0 18px #71304b55,
+    inset 0 -12px 15px #8d3d6655,
+    0 12px 18px #0005;
+}
+
+.cake-layer-one::before {
+  content: "✧  ♡  ✧";
+  position: absolute;
+  top: 18px;
+  left: 0;
+  width: 100%;
+  text-align: center;
+  color: #fff0df;
+  font-size: 24px;
+  letter-spacing: 12px;
+  text-shadow: 0 2px 5px #a94f7e;
+}
+
+.cake-layer-one::after {
+  content: "";
+  position: absolute;
+  bottom: 5px;
+  left: 5%;
+  width: 90%;
+  height: 9px;
+  background:
+    radial-gradient(circle, #f9e3b6 0 3px, transparent 4px);
+  background-size: 17px 9px;
+}
+
+/* Lower layer front design */
+
+.cake-layer-two {
+  position: relative;
+  overflow: hidden;
+  box-shadow:
+    inset 10px 0 17px #fff7,
+    inset -15px 0 20px #71304b55,
+    inset 0 -14px 18px #85385e55,
+    0 15px 20px #0005;
+}
+
+.cake-layer-two::before {
+  content: "✦   ·   ♡   ·   ✦";
+  position: absolute;
+  top: 19px;
+  left: 0;
+  width: 100%;
+  text-align: center;
+  color: #fff0d5;
+  font-size: 22px;
+  letter-spacing: 5px;
+  text-shadow: 0 2px 5px #9b5470;
+}
+
+.cake-layer-two::after {
+  content: "";
+  position: absolute;
+  bottom: 6px;
+  left: 5%;
+  width: 90%;
+  height: 10px;
+  background:
+    radial-gradient(circle, #f4d99d 0 3px, transparent 4px);
+  background-size: 19px 10px;
+}
+
+/* =================================
+   PUCHKI — ANTIQUE PARCHMENT THEME
+   PART 1: COLOUR FOUNDATION
+================================= */
+
+:root {
+  --night: #E8D1A0;
+  --plum: #C49A5A;
+  --rose: #A65D35;
+  --gold: #704326;
+  --cream: #FFF1D2;
+  --soft: #5B3A25;
+
+  --ink: #3D281B;
+  --paper: #E8D1A0;
+  --dark-brown: #542F1B;
+  --antique-gold: #B88746;
+}
+
+html,
+body {
+  background: #D8B982 !important;
+  color: var(--ink) !important;
+}
+
+body {
+  background:
+    radial-gradient(
+      ellipse at center,
+      #F3DFB8 0%,
+      #E8D1A0 65%,
+      #C49A5A 100%
+    ) !important;
+}
+
+#ambient-background {
+  background:
+    radial-gradient(
+      ellipse at center,
+      #F7E8C9 0%,
+      #E8D1A0 65%,
+      #C49A5A 100%
+    ) !important;
+}
+
+.ambient-glow {
+  background: #FFF1D2 !important;
+  opacity: 0.35 !important;
+  filter: blur(100px);
+}
+
+/* =================================
+   PART 2: ANTIQUE TYPOGRAPHY
+================================= */
+
+.scene h1,
+.scene h2,
+.scene h3 {
+  color: #542F1B !important;
+  text-shadow: 1px 1px 2px #FFF1D288 !important;
+}
+
+.scene p {
+  color: #68472D !important;
+}
+
+.eyebrow,
+.small-label {
+  color: #98602F !important;
+  letter-spacing: 3px;
+}
+
+.gold-text,
+.welcome-content h1 {
+  color: #8B542B !important;
+  text-shadow: none !important;
+}
+
+.intro-content h1 {
+  color: #4A2B19 !important;
+  text-shadow: 1px 2px 3px #FFF1D2 !important;
+}
+
+/* ANTIQUE BUTTONS */
+
+.gold-button,
+.outline-button,
+.continue-button {
+  background: linear-gradient(
+    145deg,
+    #704326,
+    #4A2B19
+  ) !important;
+
+  color: #FFF1D2 !important;
+  border: 1px solid #B88746 !important;
+
+  border-radius: 5px !important;
+  box-shadow: 0 5px 14px #70432644 !important;
+
+  letter-spacing: 2px;
+}
+
+.gold-button:active,
+.outline-button:active,
+.continue-button:active {
+  background: #8B542B !important;
+  transform: scale(0.97);
+}
+
+.continue-button {
+  border-radius: 4px !important;
+}
+
+/* =================================
+   PART 3: ANTIQUE PAPER TEXTURE
+================================= */
+
+.scene {
+  background:
+    radial-gradient(
+      ellipse at 15% 10%,
+      #FFF3D8AA,
+      transparent 45%
+    ),
+    radial-gradient(
+      ellipse at 85% 90%,
+      #B8874633,
+      transparent 45%
+    ),
+    linear-gradient(
+      135deg,
+      #F1DDB8,
+      #E8D1A0 50%,
+      #DCC08D
+    ) !important;
+
+  color: #3D281B !important;
+}
+
+.scene::before {
+  content: "";
+  position: absolute;
+  inset: 12px;
+  border: 2px solid #9B6B3B88;
+  outline: 1px solid #B8874655;
+  outline-offset: 5px;
+  pointer-events: none;
+  z-index: 0;
+}
+
+.scene > * {
+  position: relative;
+  z-index: 1;
+}
+
+.gold-line {
+  background: linear-gradient(
+    90deg,
+    transparent,
+    #98602F,
+    transparent
+  ) !important;
+  box-shadow: none !important;
+}
+
+/* =================================
+   PART 4: ANTIQUE ROYAL CURTAINS
+================================= */
+
+.intro-scene {
+  background:
+    radial-gradient(
+      ellipse at center,
+      #F5E3C0,
+      #C49A5A 75%,
+      #704326
+    ) !important;
+}
+
+.curtain {
+  background:
+    linear-gradient(
+      90deg,
+      #3D281B,
+      #704326 12%,
+      #A66A35 25%,
+      #704326 38%,
+      #4A2B19 52%,
+      #95602F 68%,
+      #704326 82%,
+      #3D281B
+    ) !important;
+
+  box-shadow:
+    inset 0 0 35px #241307AA,
+    0 0 30px #3D281B66 !important;
+}
+
+.curtain-left,
+.curtain-right {
+  border-color: #B88746 !important;
+}
+
+.curtain::before {
+  background: linear-gradient(
+    180deg,
+    #C49A5A,
+    #704326 65%,
+    #3D281B
+  ) !important;
+}
+
+.curtain::after {
+  background:
+    repeating-linear-gradient(
+      90deg,
+      transparent 0px,
+      #F3D49A33 5px,
+      transparent 13px,
+      #24130755 25px
+    ) !important;
+}
+
+.curtain-folds {
+  background:
+    repeating-linear-gradient(
+      90deg,
+      #24130755 0px,
+      transparent 9px,
+      #E8C78A33 20px,
+      transparent 34px
+    ) !important;
+}
+
+.curtain-folds::before {
+  background: linear-gradient(
+    180deg,
+    #E8C78A,
+    #A66A35,
+    #542F1B
+  ) !important;
+}
+
+.curtain-folds::after {
+  background: linear-gradient(
+    180deg,
+    #A66A35,
+    #704326,
+    #3D281B
+  ) !important;
+  border-color: #D6B477 !important;
+}
+
+/* =================================
+   PART 5: VINTAGE COUNTDOWN
+================================= */
+
+.countdown-widget {
+  gap: 10px !important;
+}
+
+.countdown-box {
+  background:
+    linear-gradient(
+      145deg,
+      #F8E8C9,
+      #DCC08D
+    ) !important;
+
+  border: 2px solid #A87843 !important;
+  border-radius: 5px !important;
+
+  box-shadow:
+    inset 0 0 12px #FFF1D288,
+    0 5px 12px #70432633 !important;
+}
+
+.countdown-box strong {
+  color: #542F1B !important;
+  text-shadow: none !important;
+}
+
+.countdown-box span {
+  color: #80552F !important;
+  letter-spacing: 1.5px;
+}
+
+#flower-message,
+#reason-message,
+#note-message {
+  background: #F5E4C4 !important;
+  color: #4A2B19 !important;
+  border: 1px solid #A87843 !important;
+  border-radius: 5px !important;
+  box-shadow: 0 5px 15px #70432622 !important;
+}
+
+/* PART 6: VINTAGE FLOWERS */
+
+.star,
+.floating-particle {
+  background: #B88746 !important;
+  box-shadow: 0 0 8px #B8874666 !important;
+}
+
+.flower {
+  color: #98602F !important;
+  filter: sepia(0.5);
+}
+
+.flower::before,
+.flower::after {
+  border-color: #A87843 !important;
+}
+
+.flower-card,
+.reason-card,
+.note-card {
+  background: linear-gradient(
+    145deg,
+    #F8EACD,
+    #E8D1A0
+  ) !important;
+
+  border: 1px solid #B88746 !important;
+  border-radius: 6px !important;
+
+  box-shadow:
+    0 6px 18px #70432622,
+    inset 0 0 12px #FFF1D266 !important;
+}
+
+.flower-card h3,
+.reason-card h3,
+.note-card h3 {
+  color: #704326 !important;
+}
+
+.flower-card p,
+.reason-card p,
+.note-card p {
+  color: #5B3A25 !important;
+}
+/* PART 7: ANTIQUE LETTER */
+
+.letter,
+.letter-paper,
+.letter-content,
+.envelope {
+  background: linear-gradient(
+    135deg,
+    #F8EACD,
+    #E8D1A0,
+    #DCC08D
+  ) !important;
+
+  color: #3D281B !important;
+  border: 1px solid #A87843 !important;
+
+  box-shadow:
+    0 8px 22px #70432633,
+    inset 0 0 18px #B8874622 !important;
+}
+
+.letter h1,
+.letter h2,
+.letter h3,
+.letter-paper h1,
+.letter-paper h2 {
+  color: #704326 !important;
+}
+
+.letter p,
+.letter-paper p,
+.letter-content p {
+  color: #5B3A25 !important;
+  line-height: 1.9 !important;
+}
+
+.envelope::before,
+.envelope::after {
+  border-color: #B88746 !important;
+}
+/* PART 8: VINTAGE SCRAPBOOK */
+
+.scrapbook,
+.memory-card,
+.memory-page,
+.photo-frame {
+  background: linear-gradient(
+    145deg,
+    #F8EACD,
+    #E8D1A0
+  ) !important;
+
+  border: 1px solid #A87843 !important;
+  border-radius: 5px !important;
+
+  box-shadow:
+    0 7px 18px #70432633,
+    inset 0 0 12px #B8874622 !important;
+}
+
+.scrapbook h1,
+.scrapbook h2,
+.scrapbook h3,
+.memory-card h3 {
+  color: #704326 !important;
+}
+
+.scrapbook p,
+.memory-card p,
+.memory-page p {
+  color: #5B3A25 !important;
+  line-height: 1.8 !important;
+}
+
+.photo-frame {
+  border: 5px solid #C49A5A !important;
+  outline: 1px solid #704326 !important;
+}
+
+/* PART 9: VINTAGE CAKE */
+
+.cake,
+.cake-container {
+  filter: sepia(0.18);
+}
+
+.cake-plate {
+  background: linear-gradient(
+    180deg,
+    #E8D1A0,
+    #B88746,
+    #704326
+  ) !important;
+
+  border: 2px solid #A87843 !important;
+  box-shadow: 0 8px 18px #70432644 !important;
+}
+
+.cake-text,
+.cake-inscription {
+  color: #542F1B !important;
+  text-shadow: none !important;
+}
+
+.candle {
+  border-color: #B88746 !important;
+}
+
+.flame {
+  filter: sepia(0.5) saturate(0.8);
+}
+
+/* PART 10: ANTIQUE SECRET BOX */
+
+.secret-box,
+.gift-box,
+.surprise-box {
+  background: linear-gradient(
+    145deg,
+    #A66A35,
+    #704326,
+    #3D281B
+  ) !important;
+
+  border: 2px solid #C49A5A !important;
+  border-radius: 7px !important;
+
+  box-shadow:
+    inset 0 0 15px #E8D1A033,
+    0 10px 25px #70432655 !important;
+}
+
+.secret-box h1,
+.secret-box h2,
+.secret-box h3,
+.gift-box h2 {
+  color: #F8EACD !important;
+}
+
+.secret-box p,
+.gift-box p,
+.surprise-box p {
+  color: #F1DDB8 !important;
+}
+
+.secret-box button,
+.gift-box button {
+  background: linear-gradient(
+    145deg,
+    #C49A5A,
+    #8B542B
+  ) !important;
+
+  color: #FFF1D2 !important;
+  border: 1px solid #E8D1A0 !important;
+}
+/* PART 11: VINTAGE CONFESSION */
+
+.confession,
+.confession-card,
+.final-message,
+.reveal-card {
+  background: linear-gradient(
+    145deg,
+    #F8EACD,
+    #E8D1A0,
+    #DCC08D
+  ) !important;
+
+  color: #3D281B !important;
+  border: 2px solid #A87843 !important;
+  border-radius: 6px !important;
+
+  box-shadow:
+    0 8px 24px #70432633,
+    inset 0 0 16px #FFF1D266 !important;
+}
+
+.confession h1,
+.confession h2,
+.confession-card h2,
+.final-message h2,
+.reveal-card h2 {
+  color: #704326 !important;
+  text-shadow: none !important;
+}
+
+.confession p,
+.confession-card p,
+.final-message p,
+.reveal-card p {
+  color: #4A2B19 !important;
+  line-height: 1.9 !important;
+}
+/* PART 12: VINTAGE FINALE */
+
+.finale,
+.finale-scene,
+.celebration,
+.final-scene {
+  background:
+    radial-gradient(
+      ellipse at center,
+      #F8EACD,
+      #E8D1A0 65%,
+      #C49A5A
+    ) !important;
+
+  color: #3D281B !important;
+}
+
+.finale h1,
+.finale h2,
+.finale-scene h1,
+.final-scene h1 {
+  color: #704326 !important;
+  text-shadow: 1px 1px 2px #FFF1D2 !important;
+}
+
+.finale p,
+.finale-scene p,
+.celebration p {
+  color: #542F1B !important;
+}
+
+.confetti {
+  filter: sepia(0.6) saturate(0.8);
+}
+
+.toast,
+.toast-message {
+  background: #704326 !important;
+  color: #FFF1D2 !important;
+  border: 1px solid #C49A5A !important;
+}
+
+/* PART 13: FINAL VINTAGE HARMONY */
+
+button,
+.gold-button,
+.outline-button,
+.continue-button {
+  background: linear-gradient(
+    145deg,
+    #80502D,
+    #4A2B19
+  ) !important;
+
+  color: #FFF1D2 !important;
+  border: 1px solid #C49A5A !important;
+}
+
+input,
+textarea {
+  background: #F8EACD !important;
+  color: #3D281B !important;
+  border: 1px solid #A87843 !important;
+}
+
+input::placeholder,
+textarea::placeholder {
+  color: #98602F !important;
+}
+
+hr {
+  border-color: #B88746 !important;
+}
+
+::selection {
+  background: #B88746 !important;
+  color: #FFF1D2 !important;
+}
+/* REPAIR 1: RESTORE ORIGINAL ELEMENTS */
+
+/* Curtains */
+.intro-scene > .curtain {
+  position: absolute !important;
+  top: 0 !important;
+  bottom: 0 !important;
+  height: auto !important;
+  z-index: 10 !important;
+}
+
+.intro-scene > .theatre-light {
+  position: absolute !important;
+  inset: 0 !important;
+  z-index: 1 !important;
+}
+
+.intro-scene > .stage-floor {
+  position: absolute !important;
+  bottom: 0 !important;
+  z-index: 2 !important;
+}
+
+.intro-scene > .intro-content {
+  position: relative !important;
+  z-index: 5 !important;
+}
+
+/* Secret must stay hidden before reveal */
+#confession-content:not(.revealed) {
+  display: none !important;
+}
+
+#confession-content[hidden] {
+  display: none !important;
+}
+
+/* Restore flower garden */
+.flower-garden {
+  display: flex !important;
+  flex-wrap: wrap !important;
+  justify-content: center !important;
+  align-items: center !important;
+  width: 100% !important;
+  max-width: 480px !important;
+  margin: 20px auto !important;
+}
+
+.flower {
+  display: inline-flex !important;
+  visibility: visible !important;
+  opacity: 1 !important;
+  flex-shrink: 0 !important;
+}
+
+.flower span {
+  display: block !important;
+  color: #704326 !important;
+}
+/* REPAIR 2: SMOOTH SCENE TRANSITIONS */
+
+html,
+body {
+  background: #E8D1A0 !important;
+}
+
+#experience {
+  background: #E8D1A0 !important;
+  isolation: isolate;
+}
+
+.scene {
+  -webkit-backface-visibility: hidden;
+  backface-visibility: hidden;
+
+  will-change: opacity;
+  transform: translateZ(0) !important;
+
+  transition:
+    opacity 0.7s ease,
+    visibility 0.7s ease !important;
+}
+
+.scene.active {
+  transform: translateZ(0) !important;
+  opacity: 1 !important;
+}
+
+.scene.leaving {
+  transform: translateZ(0) !important;
+  opacity: 0 !important;
+}
+/* VINTAGE FLOWER GARDEN */
+.flower-garden {
+  padding: 22px 12px !important;
+  border: 1px solid #B8874666 !important;
+  border-radius: 12px !important;
+  background:
+    radial-gradient(circle, #FFF1D255, transparent 70%),
+    #DCC08D55 !important;
+  box-shadow: inset 0 0 25px #A8784322 !important;
+}
+
+.flower {
+  text-shadow: 0 2px 5px #70432655 !important;
+  filter: sepia(.25) drop-shadow(0 3px 5px #70432644) !important;
+  transition: transform .4s ease, filter .4s ease !important;
+}
+
+.flower:active {
+  transform: scale(1.2) rotate(-8deg) !important;
+}
+/* VINTAGE FLOWER GARDEN */
+.flower-garden {
+  padding: 22px 12px !important;
+  border: 1px solid #B8874666 !important;
+  border-radius: 12px !important;
+  background:
+    radial-gradient(circle, #FFF1D255, transparent 70%),
+    #DCC08D55 !important;
+  box-shadow: inset 0 0 25px #A8784322 !important;
+}
+
+.flower {
+  text-shadow: 0 2px 5px #70432655 !important;
+  filter: sepia(.25) drop-shadow(0 3px 5px #70432644) !important;
+  transition: transform .4s ease, filter .4s ease !important;
+}
+
+.flower:active {
+  transform: scale(1.2) rotate(-8deg) !important;
+}
+/* ROYAL FLOWER WISH */
+#flower-message {
+  padding: 14px 18px !important;
+  font-family: Georgia, serif !important;
+  font-size: 16px !important;
+  font-style: italic !important;
+  letter-spacing: .5px !important;
+  line-height: 1.7 !important;
+  border: 1px solid #B88746 !important;
+  border-radius: 3px !important;
+  background: #F8EACD !important;
+  color: #542F1B !important;
+  box-shadow: 3px 4px 10px #70432622 !important;
+}
+/* ANTIQUE ROYAL FRAME */
+.scene::before {
+  border: 2px solid #98602F99 !important;
+  outline: 1px solid #C49A5A88 !important;
+  outline-offset: 5px !important;
+  box-shadow: inset 0 0 25px #98602F18 !important;
+}
+
+.scene::after {
+  content: "✦  ❧  ✦";
+  position: absolute;
+  bottom: 18px;
+  left: 50%;
+  transform: translateX(-50%);
+  color: #98602F99;
+  font-size: 17px;
+  letter-spacing: 7px;
+  pointer-events: none;
+  z-index: 5;
+}
+/* ROYAL TYPOGRAPHY */
+.scene h1,
+.scene h2 {
+  font-family: "Cormorant Garamond", Georgia, serif !important;
+  font-weight: 600 !important;
+  letter-spacing: 1.2px !important;
+}
+
+.scene h1 {
+  text-shadow: 1px 2px 3px #98602F33 !important;
+}
+
+.scene h2 {
+  letter-spacing: 1px !important;
+}
+
+.scene p {
+  font-family: Georgia, serif !important;
+  line-height: 1.85 !important;
+}
+/* ANTIQUE ROYAL BUTTONS */
+button {
+  position: relative;
+  overflow: hidden;
+  letter-spacing: 1.3px !important;
+  transition: all .35s ease !important;
+}
+
+.gold-button,
+.outline-button,
+.continue-button {
+  border: 1px solid #C49A5A !important;
+  box-shadow:
+    inset 0 1px 3px #FFF1D255,
+    0 5px 14px #70432633 !important;
+}
+
+button:active {
+  transform: scale(.96) !important;
+}
+/* VINTAGE GOLD DIVIDERS */
+.gold-line {
+  width: 115px !important;
+  height: 2px !important;
+  margin: 18px auto !important;
+  background: linear-gradient(
+    90deg,
+    transparent,
+    #98602F,
+    #C49A5A,
+    #98602F,
+    transparent
+  ) !important;
+  position: relative;
+}
+
+.gold-line::after {
+  content: "❧";
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  transform: translate(-50%, -50%);
+  padding: 0 8px;
+  background: #E8D1A0;
+  color: #704326;
+  font-size: 17px;
+}
+/* MOBILE SCREEN POLISH */
+@media (max-width: 480px) {
+  .scene {
+    padding: 28px 18px !important;
+  }
+
+  .scene h1 {
+    font-size: clamp(30px, 9vw, 44px) !important;
+  }
+
+  .scene h2 {
+    font-size: clamp(24px, 7vw, 34px) !important;
+  }
+
+  .scene p {
+    font-size: 15px !important;
+  }
+
+  button {
+    max-width: 100%;
+  }
+
+  .flower-garden {
+    gap: 12px !important;
+  }
+}
+/* FINAL VISUAL REPAIR */
+
+/* 1. READABLE REASON & NOTE CARDS */
+.reason-card,
+.note-card {
+  color: #542F1B !important;
+  background: linear-gradient(
+    145deg, #F8EACD, #E8D1A0
+  ) !important;
+  border: 1px solid #A87843 !important;
+  text-shadow: none !important;
+}
+
+.reason-card span,
+.note-card span {
+  color: #98602F !important;
+}
+
+.reason-card strong,
+.note-card strong {
+  color: #542F1B !important;
+}
+
+/* 2. RESTORE BEAUTIFUL FLOWERS */
+.flower {
+  width: 76px !important;
+  height: 76px !important;
+  border-radius: 50% !important;
+  background: radial-gradient(
+    circle, #FFF1D2, #E8D1A0, #C49A5A
+  ) !important;
+  border: 1px solid #A87843 !important;
+  color: #704326 !important;
+  filter: none !important;
+  box-shadow: 0 5px 15px #70432633 !important;
+}
+
+.flower span {
+  color: #704326 !important;
+  font-size: 34px !important;
+  opacity: 1 !important;
+}
+
+/* 3. HIDE EMPTY MESSAGE BOXES */
+#reason-message:empty,
+#note-message:empty {
+  display: none !important;
+}
+/* CINEMATIC SCENE TRANSITIONS */
+.scene {
+  transform: scale(1.035) translateY(14px) !important;
+  transition:
+    opacity 1s ease,
+    transform 1.1s ease,
+    visibility 1s ease !important;
+  will-change: opacity, transform;
+}
+
+.scene.active {
+  transform: scale(1) translateY(0) !important;
+}
+
+.scene.leaving {
+  transform: scale(.96) translateY(-12px) !important;
+}
+
+/* ANTIQUE GIFT WRAPPED REASON CARDS */
+#reasons .reason-card {
+  position: relative !important;
+  min-height: 88px !important;
+  overflow: hidden !important;
+  border: 1px solid #A87843 !important;
+  border-radius: 8px !important;
+  background: linear-gradient(
+    145deg, #F8EACD, #DCC08D
+  ) !important;
+  box-shadow: 0 6px 15px #70432633 !important;
+}
+
+#reasons .reason-card span,
+#reasons .reason-card strong {
+  opacity: 0;
+  color: #542F1B !important;
+  transition: opacity .5s ease .3s;
+}
+
+/* GIFT WRAPPING */
+#reasons .reason-card::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  z-index: 2;
+  background:
+    linear-gradient(90deg,
+      transparent 43%, #98602F 43%,
+      #98602F 57%, transparent 57%),
+    linear-gradient(0deg,
+      transparent 42%, #B88746 42%,
+      #B88746 58%, transparent 58%),
+    linear-gradient(145deg,#F3DDB5,#D8B77E);
+  border: 2px solid #A87843;
+  transition: transform .75s ease, opacity .6s ease;
+}
+
+#reasons .reason-card::after {
+  content: "🎀";
+  position: absolute;
+  z-index: 3;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%,-50%);
+  font-size: 27px;
+  transition: opacity .4s ease, transform .6s ease;
+}
+
+/* OPENED GIFT */
+#reasons .reason-card.gift-open::before {
+  transform: translateY(-110%) rotate(-8deg);
+  opacity: 0;
+}
+
+#reasons .reason-card.gift-open::after {
+  opacity: 0;
+  transform: translate(-50%,-120%) scale(1.5);
+}
+
+#reasons .reason-card.gift-open span,
+#reasons .reason-card.gift-open strong {
+  opacity: 1;
+}
+/* GOLDEN GIFT SPARKLES */
+#reasons .reason-card.gift-open {
+  box-shadow:
+    0 0 12px #C49A5A88,
+    0 0 28px #B8874644,
+    inset 0 0 15px #FFF1D255 !important;
+  border-color: #C49A5A !important;
+}
+
+#reasons .gift-sparkle {
+  position: absolute;
+  z-index: 5;
+  color: #98602F;
+  font-size: 19px;
+  pointer-events: none;
+  animation: giftSparkle 1.2s ease-out forwards;
+}
+
+@keyframes giftSparkle {
+  0% {
+    opacity: 0;
+    transform: scale(.2) rotate(0deg);
+  }
+  35% {
+    opacity: 1;
+  }
+  100% {
+    opacity: 0;
+    transform: scale(1.5) rotate(100deg)
+      translateY(-24px);
+  }
+}
+
+/* 3D GIFT LID EFFECT */
+#reasons .reason-card::before {
+  transform-origin: top center;
+  perspective: 700px;
+  backface-visibility: hidden;
+}
+
+#reasons .reason-card.gift-open::before {
+  transform: perspective(700px)
+    rotateX(-105deg) translateY(-35%);
+  opacity: 0;
+  transition:
+    transform .9s cubic-bezier(.2,.8,.2,1),
+    opacity .7s ease .2s;
+}
+
+#reasons .reason-card {
+  perspective: 900px;
+  transform-style: preserve-3d;
+}
+/* ROYAL GIFT DISPLAY STAGE */
+#reasons .reason-card {
+  margin: 14px auto !important;
+  padding: 22px 16px !important;
+  background:
+    linear-gradient(145deg, #F8EACD, #E8D1A0, #DCC08D) !important;
+  border: 2px solid #B88746 !important;
+  border-radius: 8px !important;
+  box-shadow:
+    0 8px 0 #A87843,
+    0 12px 22px #70432633,
+    inset 0 0 18px #FFF1D266 !important;
+}
+
+#reasons .reason-card.gift-open {
+  box-shadow:
+    0 5px 0 #A87843,
+    0 0 18px #C49A5A88,
+    0 12px 22px #70432633 !important;
+}
+/* ROYAL BIRTHDAY CURTAIN HEADER */
+
+.birthday-marquee {
+  position: absolute !important;
+  top: 8% !important;
+  left: 0;
+  width: 100%;
+  z-index: 15 !important;
+  text-align: center;
+  padding: 0 12px;
+  opacity: 1;
+  visibility: visible;
+  transition: opacity 1.5s ease, transform 1.5s ease;
+}
+
+/* DRAPED GOLDEN VALANCE */
+.royal-valance {
+  position: relative;
+  width: 90%;
+  max-width: 420px;
+  height: 75px;
+  margin: 0 auto 24px;
+  display: flex;
+  align-items: center;
+  justify-content: space-around;
+  border-bottom: 5px solid #C49A5A;
+  border-radius: 0 0 50% 50%;
+  background: linear-gradient(
+    180deg, #A66A35, #704326 75%, #3D281B
+  );
+  box-shadow: 0 7px 15px #24130788;
+}
+
+.royal-valance span {
+  color: #F1DDB8;
+  font-size: 25px;
+  text-shadow: 0 0 10px #E8D1A0;
+}
+
+/* BIRTHDAY GREETING */
+.birthday-marquee h1 {
+  color: #F8EACD !important;
+  font-family: "Cormorant Garamond", Georgia, serif !important;
+  font-size: clamp(34px, 9vw, 52px) !important;
+  font-weight: 600 !important;
+  text-shadow: 0 3px 12px #241307 !important;
+  line-height: 1.15;
+}
+
+.birthday-marquee p {
+  margin-top: 10px;
+  color: #E8C78A !important;
+  font-family: "Cormorant Garamond", Georgia, serif !important;
+  font-size: clamp(23px, 6vw, 34px) !important;
+  font-style: italic;
+  letter-spacing: 1px;
+  text-shadow: 0 2px 9px #241307 !important;
+}
+
+/* REVEAL THE STAGE AFTER CURTAINS OPEN */
+.intro-content {
+  display: block !important;
+  opacity: 0;
+  visibility: hidden;
+  transition: opacity 1.5s ease;
+}
+
+.intro-scene.revealed .intro-content {
+  opacity: 1;
+  visibility: visible;
+}
+
+/* FADE HEADER WHEN CURTAINS OPEN */
+.intro-scene.revealed .birthday-marquee {
+  opacity: 0;
+  visibility: hidden;
+  transform: translateY(-25px);
+}
+/* CLEAR BIRTHDAY NAME */
+.birthday-marquee p {
+  color: #542F1B !important;
+  font-weight: 600 !important;
+  text-shadow:
+    1px 1px 2px #FFF1D2,
+    0 2px 5px #70432644 !important;
+  opacity: 1 !important;
+}
+/* SCENE 02 - ROYAL WELCOME */
+
+#welcome {
+  background:
+    radial-gradient(circle at center, #FFF1D255, transparent 65%),
+    linear-gradient(145deg, #F3DDB8, #E8D1A0) !important;
+}
+
+#welcome .welcome-pretitle {
+  color: #98602F !important;
+  font-family: Georgia, serif !important;
+  font-style: italic;
+  letter-spacing: 2px;
+  margin-bottom: 12px;
+}
+
+#welcome .hero-title {
+  color: #542F1B !important;
+  line-height: 1.1 !important;
+}
+
+#welcome .hero-title span {
+  display: block;
+  color: #98602F !important;
+  font-size: 1.35em;
+  font-style: italic;
+  text-shadow: 1px 2px 3px #70432633;
+}
+
+#welcome .scene-description {
+  margin: 20px auto;
+  color: #5B3A25 !important;
+}
+
+#welcome .date-display {
+  margin-top: 25px;
+  padding: 17px 30px;
+  border: 2px solid #B88746;
+  outline: 1px solid #B8874688;
+  outline-offset: 5px;
+  background: #F8EACD;
+  box-shadow: 0 8px 18px #70432622;
+}
+
+/* SCENE 03 - ROYAL COUNTDOWN */
+#countdown {
+  background:
+    radial-gradient(circle at center, #FFF3D8, transparent 68%),
+    linear-gradient(145deg, #F3DDB8, #E8D1A0) !important;
+}
+
+#countdown .scene-title {
+  color: #542F1B !important;
+}
+
+#countdown .scene-title em {
+  color: #98602F !important;
+}
+
+#countdown .scene-description {
+  color: #704326 !important;
+}
+
+#countdown .time-card {
+  background: linear-gradient(145deg, #FFF4D9, #E8C994) !important;
+  border: 1px solid #B88746 !important;
+  border-radius: 14px !important;
+  box-shadow: 0 7px 18px #70432625 !important;
+}
+
+#countdown .time-card strong {
+  color: #704326 !important;
+}
+
+#countdown .time-card span {
+  color: #98602F !important;
+  letter-spacing: 2px;
+}
+
+#countdown #countdown-message {
+  color: #704326 !important;
+  font-family: Georgia, serif;
+  font-style: italic;
+  margin-top: 25px;
+}
+/* SCENE 04 - MAGICAL UNIVERSE */
+#universe {
+  background:
+    radial-gradient(circle at 50% 45%, #FFF2D6, transparent 65%),
+    linear-gradient(145deg, #F3DDB8, #E8D1A0) !important;
+}
+
+#universe .eyebrow {
+  color: #98602F !important;
+  letter-spacing: 3px;
+}
+
+#universe .scene-title {
+  color: #542F1B !important;
+}
+
+#universe .scene-title em {
+  color: #98602F !important;
+}
+
+#universe .scene-description {
+  color: #704326 !important;
+  line-height: 1.8;
+}
+
+#universe .universe-art {
+  filter: drop-shadow(0 8px 15px #70432622);
+}
+
+#universe .universe-planet {
+  background: radial-gradient(
+    circle at 35% 30%,
+    #FFF2D6,
+    #D9AD69 55%,
+    #98602F
+  ) !important;
+  border: 2px solid #B88746 !important;
+  box-shadow: 0 0 30px #C49A5A66 !important;
+}
+
+#universe .universe-planet span {
+  color: #542F1B !important;
+}
+
+#universe .universe-planet small {
+  color: #704326 !important;
+}
+/* UNIVERSE - GOLDEN ORBITS & STARS */
+
+#universe .universe-orbit {
+  border-color: #B88746 !important;
+  box-shadow: 0 0 12px #C49A5A55 !important;
+}
+
+#universe .star-one,
+#universe .star-two,
+#universe .star-three,
+#universe .star-four {
+  color: #98602F !important;
+  text-shadow:
+    0 0 6px #D6A85F,
+    0 0 15px #C49A5A88 !important;
+  animation: universeTwinkle 2.5s ease-in-out infinite alternate;
+}
+
+#universe .star-two {
+  animation-delay: .5s;
+}
+
+#universe .star-three {
+  animation-delay: 1s;
+}
+
+#universe .star-four {
+  animation-delay: 1.5s;
+}
+
+@keyframes universeTwinkle {
+  from {
+    opacity: .45;
+    transform: scale(.85);
+  }
+  to {
+    opacity: 1;
+    transform: scale(1.2);
+  }
+}
+
+/* SCENE 05 - ROYAL FLOWER GARDEN */
+
+#garden {
+  background:
+    radial-gradient(circle at center, #FFF3DC, transparent 68%),
+    linear-gradient(145deg, #F3DDB8, #E8D1A0) !important;
+}
+
+#garden .eyebrow {
+  color: #98602F !important;
+  letter-spacing: 2px;
+}
+
+#garden .scene-title {
+  color: #542F1B !important;
+}
+
+#garden .scene-title em {
+  color: #A65D35 !important;
+}
+
+#garden .scene-description {
+  color: #704326 !important;
+  line-height: 1.8;
+}
+
+#garden .flower-garden {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 18px;
+  margin: 30px auto;
+  max-width: 420px;
+}
+
+#garden .flower {
+  width: 68px;
+  height: 68px;
+  border: 1px solid #B88746;
+  border-radius: 50%;
+  background: linear-gradient(145deg, #FFF2D6, #E8C994);
+  box-shadow: 0 6px 15px #70432625;
+  cursor: pointer;
+  transition: transform .4s ease, box-shadow .4s ease;
+}
+
+#garden .flower span {
+  color: #A65D35;
+  font-size: 35px;
+}
+/* FLOWER BLOOMING EFFECT */
+
+#garden .flower {
+  position: relative;
+  animation: flowerFloat 3s ease-in-out infinite;
+}
+
+#garden .flower:nth-child(2) {
+  animation-delay: .4s;
+}
+
+#garden .flower:nth-child(3) {
+  animation-delay: .8s;
+}
+
+#garden .flower:nth-child(4) {
+  animation-delay: 1.2s;
+}
+
+#garden .flower:nth-child(5) {
+  animation-delay: 1.6s;
+}
+
+#garden .flower:hover,
+#garden .flower:focus-visible {
+  transform: scale(1.18) rotate(8deg);
+  box-shadow: 0 0 22px #C49A5A88;
+  outline: none;
+}
+
+#garden .flower:active {
+  transform: scale(.92);
+}
+
+@keyframes flowerFloat {
+  0%, 100% {
+    translate: 0 0;
+  }
+  50% {
+    translate: 0 -7px;
+  }
+}
+/* FLOWER WISH - ROYAL MESSAGE PLAQUE */
+
+#garden #flower-message {
+  max-width: 340px;
+  margin: 28px auto 10px;
+  padding: 18px 22px;
+  color: #542F1B !important;
+  background: linear-gradient(145deg, #FFF3D8, #E8C994);
+  border: 1px solid #B88746;
+  outline: 1px solid #B8874666;
+  outline-offset: 4px;
+  border-radius: 12px;
+  box-shadow: 0 8px 20px #70432622;
+  font-family: Georgia, serif;
+  font-style: italic;
+  line-height: 1.7;
+  text-align: center;
+  transition: opacity .5s ease, transform .5s ease;
+}
+
+#garden #flower-message::before {
+  content: "✧  ♡  ✧";
+  display: block;
+  color: #A65D35;
+  font-size: 17px;
+  margin-bottom: 8px;
+}
+/* SCENE 06 - ROYAL REASONS */
+
+#reasons {
+  background:
+    radial-gradient(circle at center, #FFF3DC, transparent 68%),
+    linear-gradient(145deg, #F3DDB8, #E8D1A0) !important;
+}
+
+#reasons .eyebrow {
+  color: #98602F !important;
+  letter-spacing: 2px;
+}
+
+#reasons .scene-title {
+  color: #542F1B !important;
+}
+
+#reasons .scene-title em {
+  color: #A65D35 !important;
+}
+
+#reasons .scene-description {
+  color: #704326 !important;
+  line-height: 1.8;
+}
+
+#reasons .reason-grid {
+  gap: 18px !important;
+  margin-top: 30px;
+}
+/* REASONS - ANTIQUE GIFT FINISH */
+
+#reasons .reason-card {
+  border: 1px solid #B88746 !important;
+  border-radius: 13px !important;
+  box-shadow:
+    0 7px 16px #70432625,
+    inset 0 0 12px #FFF3D855 !important;
+}
+
+#reasons .reason-card span {
+  color: #98602F !important;
+}
+
+#reasons .reason-card strong {
+  color: #542F1B !important;
+}
+
+#reasons .reason-card:hover {
+  box-shadow:
+    0 10px 24px #70432640,
+    0 0 15px #C49A5A55 !important;
+}
+/* GOLDEN GIFT SHIMMER */
+
+#reasons .reason-card {
+  position: relative;
+  overflow: hidden;
+}
+
+#reasons .reason-card::after {
+  content: "";
+  position: absolute;
+  top: -50%;
+  left: -80%;
+  width: 45%;
+  height: 200%;
+  background: linear-gradient(
+    90deg,
+    transparent,
+    #FFF5D988,
+    transparent
+  );
+  transform: rotate(25deg);
+  pointer-events: none;
+}
+
+#reasons .reason-card:hover::after {
+  left: 140%;
+  transition: left .8s ease;
+}
+/* REASONS - REVEALED MESSAGE */
+
+#reasons #reason-message {
+  max-width: 350px;
+  margin: 28px auto 12px;
+  padding: 18px 22px;
+  color: #542F1B !important;
+  background: linear-gradient(145deg, #FFF3D8, #E8C994);
+  border: 1px solid #B88746;
+  outline: 1px solid #B8874666;
+  outline-offset: 4px;
+  border-radius: 12px;
+  box-shadow: 0 8px 20px #70432622;
+  font-family: Georgia, serif;
+  font-style: italic;
+  line-height: 1.7;
+  text-align: center;
+}
+/* SCENE 07 - ROYAL LOVE NOTES */
+
+#notes {
+  background:
+    radial-gradient(circle at center, #FFF3DC, transparent 68%),
+    linear-gradient(145deg, #F3DDB8, #E8D1A0) !important;
+}
+
+#notes .eyebrow {
+  color: #98602F !important;
+  letter-spacing: 2px;
+}
+
+#notes .scene-title {
+  color: #542F1B !important;
+}
+
+#notes .scene-title em {
+  color: #A65D35 !important;
+}
+
+#notes .scene-description {
+  color: #704326 !important;
+  line-height: 1.8;
+}
+
+#notes .notes-grid {
+  gap: 18px !important;
+  margin-top: 30px;
+}
+/* LOVE NOTES - VINTAGE PAPER CARDS */
+
+#notes .note-card {
+  background: linear-gradient(
+    145deg,
+    #FFF4DF,
+    #EBD2A5
+  ) !important;
+  border: 1px solid #B88746 !important;
+  border-radius: 12px !important;
+  box-shadow:
+    0 7px 17px #70432625,
+    inset 0 0 12px #FFF9E455 !important;
+  transition: transform .4s ease,
+              box-shadow .4s ease;
+}
+
+#notes .note-card span {
+  color: #A65D35 !important;
+  font-size: 27px;
+}
+
+#notes .note-card strong {
+  color: #542F1B !important;
+}
+
+#notes .note-card:hover {
+  transform: translateY(-6px);
+  box-shadow: 0 12px 23px #70432635 !important;
+}
+/* LOVE NOTES - REVEALED MESSAGE */
+
+#notes #note-message {
+  max-width: 340px;
+  margin: 28px auto 12px;
+  padding: 20px;
+  color: #542F1B !important;
+  background: linear-gradient(145deg, #FFF4DF, #E8C994);
+  border: 1px solid #B88746;
+  outline: 1px solid #B8874666;
+  outline-offset: 4px;
+  border-radius: 10px;
+  box-shadow: 0 8px 20px #70432625;
+  font-family: Georgia, serif;
+  font-style: italic;
+  line-height: 1.8;
+  text-align: center;
+}
+
+#notes #note-message::before {
+  content: "✧  SEALED WITH LOVE  ✧";
+  display: block;
+  color: #98602F;
+  font-size: 11px;
+  letter-spacing: 2px;
+  margin-bottom: 10px;
+}
+/* SCENE 08 - ROYAL SCRAPBOOK */
+
+#scrapbook {
+  background:
+    radial-gradient(circle at center, #FFF3DC, transparent 68%),
+    linear-gradient(145deg, #F3DDB8, #E8D1A0) !important;
+}
+
+#scrapbook .eyebrow {
+  color: #98602F !important;
+  letter-spacing: 2px;
+}
+
+#scrapbook .scene-title {
+  color: #542F1B !important;
+}
+
+#scrapbook .scene-title em {
+  color: #A65D35 !important;
+}
+
+#scrapbook .scene-description {
+  color: #704326 !important;
+  line-height: 1.8;
+}
+
+#scrapbook .scrapbook-grid {
+  gap: 22px !important;
+  margin-top: 32px;
+}
+/* FINAL ROYAL THEME - SCENES 08 TO 13 */
+
+#scrapbook,
+#letter,
+#cake,
+#secret,
+#confession,
+#finale {
+  background:
+    radial-gradient(circle at center, #FFF3DC, transparent 68%),
+    linear-gradient(145deg, #F3DDB8, #E8D1A0) !important;
+}
+
+#scrapbook .scrap-card {
+  background: linear-gradient(145deg, #FFF4DF, #E8C994);
+  border: 1px solid #B88746;
+  border-radius: 10px;
+  box-shadow: 0 8px 20px #70432625;
+  padding: 22px;
+}
+
+#scrapbook .scrap-card h3,
+#scrapbook .scrap-card p {
+  color: #542F1B !important;
+}
+
+#scrapbook .scrap-card span,
+#scrapbook .scrap-card small {
+  color: #98602F !important;
+}
+
+#letter .letter-envelope {
+  filter: drop-shadow(0 10px 12px #70432633);
+}
+
+#letter .envelope-label {
+  color: #542F1B !important;
+}
+
+#letter .letter-content {
+  background: #FFF3DC;
+  border: 1px solid #B88746;
+  color: #542F1B !important;
+  box-shadow: 0 10px 25px #70432625;
+}
+
+#letter .letter-content h3 {
+  color: #98602F !important;
+}
+
+#cake .cake-top {
+  background: linear-gradient(145deg, #FFF0D0, #D8A96B) !important;
+}
+
+#cake .cake-layer-one {
+  background: linear-gradient(90deg, #A65D35, #E8C994, #A65D35) !important;
+}
+
+#cake .cake-layer-two {
+  background: linear-gradient(90deg, #704326, #C49A5A, #704326) !important;
+}
+
+#cake .cake-plate {
+  background: linear-gradient(90deg, #98602F, #F3DDB8, #98602F) !important;
+}
+
+#cake #cake-message {
+  color: #704326 !important;
+}
+
+#secret .secret-box-body {
+  background: linear-gradient(145deg, #D6A85F, #98602F) !important;
+  color: #FFF3DC !important;
+}
+
+#secret #secret-message {
+  color: #542F1B !important;
+}
+
+#confession .confession-decoration,
+#confession .decorative-heart {
+  color: #A65D35 !important;
+}
+
+#confession .confession-content {
+  background: linear-gradient(145deg, #FFF4DF, #E8C994);
+  border: 1px solid #B88746;
+  border-radius: 14px;
+  box-shadow: 0 10px 25px #70432625;
+  color: #542F1B !important;
+  padding: 24px;
+}
+
+#confession .confession-content h3 {
+  color: #98602F !important;
+}
+
+#finale .finale-title,
+#finale h2 {
+  color: #542F1B !important;
+}
+
+#finale .finale-title em,
+#finale .final-heart,
+#finale .finale-stars {
+  color: #A65D35 !important;
+}
+
+#finale .final-credit {
+  color: #98602F !important;
+}
+/* FINAL MOBILE & BUTTON POLISH */
+
+.gold-button,
+.outline-button {
+  border-radius: 30px;
+  transition: transform .3s ease, box-shadow .3s ease;
+}
+
+.gold-button {
+  background: linear-gradient(135deg, #D6A85F, #98602F) !important;
+  color: #FFF8E9 !important;
+  border: 1px solid #B88746 !important;
+  box-shadow: 0 6px 16px #70432633;
+}
+
+.outline-button {
+  border: 1px solid #98602F !important;
+  color: #704326 !important;
+  background: transparent !important;
+}
+
+.gold-button:active,
+.outline-button:active {
+  transform: scale(.96);
+}
+
+@media (max-width: 480px) {
+  #scrapbook .scrapbook-grid,
+  #notes .notes-grid,
+  #reasons .reason-grid {
+    gap: 12px !important;
+  }
+
+  #scrapbook .scrap-card {
+    padding: 16px;
+  }
+
+  #confession .confession-content {
+    padding: 18px;
+  }
+
+  #letter .letter-content {
+    max-width: 92%;
+    margin-left: auto;
+    margin-right: auto;
+  }
+}
+
+/* GOLDEN GIFT RIBBON */
+
+#reasons .reason-card {
+  position: relative;
+  overflow: visible !important;
+}
+
+#reasons .reason-card::before {
+  content: "";
+  position: absolute;
+  top: -9px;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 34px;
+  height: 18px;
+  border: 3px solid #D6A85F;
+  border-radius: 50%;
+  background: transparent;
+  z-index: 5;
+}
+
+
+/* VERTICAL GOLDEN SATIN RIBBON */
+
+#reasons .reason-card::after {
+  content: "";
+  position: absolute;
+  top: -9px;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 13px;
+  height: 100%;
+  background: linear-gradient(
+    90deg,
+    #98602F,
+    #F5D78E,
+    #C49A5A,
+    #F5D78E,
+    #98602F
+  );
+  z-index: 4;
+  pointer-events: none;
+}
